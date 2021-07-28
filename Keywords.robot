@@ -1,3 +1,4 @@
+# +
 *** Keywords ***
 Open the robot order website
     Open Available Browser      https://robotsparebinindustries.com/#/robot-order 
@@ -64,3 +65,14 @@ Go to order another robot
     
 Create a ZIP file of the receipts
     Archive Folder With Zip  ${CURDIR}${/}output${/}receipts   ${CURDIR}${/}output${/}receipt.zip
+    
+Get orders.csv URL from User
+    Create Form    Orders.csv URL
+    Add Text Input    URL    url
+    &{response}    Request Response
+    [Return]    ${response["url"]}
+    
+Get the URL from vault and Open the robot order website
+    ${url}=     Get Secret  credentials
+    Log        ${url}
+    Open Available Browser      ${url}[csvurl]

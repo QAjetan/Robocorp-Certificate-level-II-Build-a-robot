@@ -15,8 +15,6 @@ Library           RPA.PDF
 Library           RPA.Archive
 Library           RPA.Dialogs
 Library           RPA.Robocloud.Secrets
-
-
 # -
 
 *** Variables ***
@@ -26,7 +24,7 @@ ${order_number}
 
 *** Tasks ***
 Order robots from RobotSpareBin Industries Inc
-    Open the robot order website
+     Get the URL from vault and Open the robot order website
     ${orders}=    Get orders
     FOR    ${row}    IN    @{orders}
         Close the annoying modal
@@ -40,6 +38,3 @@ Order robots from RobotSpareBin Industries Inc
     END
     Create a ZIP file of the receipts
     [Teardown]      Close Browser
-
-
-
